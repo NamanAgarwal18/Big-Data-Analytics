@@ -1,0 +1,6 @@
+1. To create Project Table in students keyspace.
+2. To Insert data
+3. To view all rows of project_details table.
+4. To view row/record from the “project_details” table wherein the project_id=1
+5. To sort order the rows/records of the “project_details” in descending order of project_name.5. To sort order the rows/records of the “project_details” in descending
+order of project_name.
