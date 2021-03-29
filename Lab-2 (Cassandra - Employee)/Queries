@@ -1,0 +1,33 @@
+create keyspace Employee with replication = { 'class':'SimpleStrategy', 'replication_factor':1 };
+use Employee;
+
+create table Employee_Info(
+            ... Emp_Id int primary key,
+            ... Emp_Name text,
+            ... Designation text,
+            ... Date_Of_Joining timestamp,
+            ... Salary double,
+            ... Dept_Name text);
+            
+Begin batch 
+
+INSERT INTO employee_info(Emp_Id,Emp_Name,Designation,Date_Of_joining,Salary,Dept_Name) VALUES(121,'Naman','Manager','2021-03-28',99999,'CS') 
+
+INSERT INTO employee_info(Emp_Id,Emp_Name,Designation,Date_Of_joining,Salary,Dept_Name) VALUES(122,'Nimit','Android Developer','2021-03-30',70000,'CS') 
+
+INSERT INTO employee_info(Emp_Id,Emp_Name,Designation,Date_Of_joining,Salary,Dept_Name) VALUES(122,'Rutazeet','Analyst','2021-03-29',50000,'MECH') 
+
+apply batch;
+
+
+UPDATE employee_info SET Emp_Name='Naman Agarwal', Dept_Name='CSE'  WHERE Emp_Id=121;
+
+alter table employee_info
+            ... Add project set<text>;
+            
+UPDATE employee_info SET project={'company website testing'} WHERE Emp_ID=122;  
+UPDATE employee_info SET project={'company website','Employee management app'} WHERE Emp_ID=121;
+UPDATE employee_info SET project={'sales improvement proj','ad management sys'} WHERE Emp_ID=123;
+
+
+begin batch INSERT INTO employee_info(Emp_Id,Emp_Name,Designation,Date_Of_joining,Salary,Dept_Name,project) VALUES(124,'sainyam','Intern','2021-04-02',20000,'IT',{'LMS'}) USING TTL 15 apply batch;
