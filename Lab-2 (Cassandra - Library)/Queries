@@ -1,0 +1,25 @@
+CREATE KEYSPACE Library WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor':1};
+USE Library;
+
+CREATE TABLE library_info (     stud_id int ,     stud_name text,     book_name text,     book_id int,     date_of_issue timestamp,     counter_value counter, Primary key (stud_id,stud_name,book_name,book_id,date_of_issue));
+
+
+UPDATE  Library_Info  SET Counter_value=Counter_value+1 where Stud_Id=1 and Stud_Name='Naman' and Book_name='Big Data Analytics' and Book_id=22 and Date_Of_Issue='2021-03-28';
+UPDATE  Library_Info  SET Counter_value=Counter_value+1 where Stud_Id=112 and Stud_Name='Nimit' and Book_name='BDA' and Book_id=27 and Date_Of_Issue='2021-03-29';
+UPDATE  Library_Info  SET Counter_value=Counter_value+1 where Stud_Id=100 and Stud_Name='Rutazeet' and Book_name='Data Science' and Book_id=20 and Date_Of_Issue='2021-03-30';
+
+UPDATE  Library_Info  SET Counter_value=Counter_value+1 where Stud_Id=112 and Stud_Name='Nimit' and Book_name='BDA' and Book_id=27 and Date_Of_Issue='2021-03-29';
+cqlsh:library> select * from Library_info ;
+
+
+COPY Library_Info(Stud_Id,Stud_Name,Book_Name,Book_Id,Date_Of_Issue,Counter_value) TO 'g:\Lib_Info.csv';
+
+
+
+
+CREATE TABLE Library_Info_Imports( Stud_Id int, Counter_value counter, Stud_Name text, Book_Name text, Book_Id int, Date_Of_Issue timestamp, PRIMARY KEY(Stud_Id,Stud_Name,Book_Name,Book_Id,Date_Of_Issue));
+
+
+COPY Library_Info_Imports(Stud_Id,Stud_Name,Book_Name,Book_Id,Date_Of_Issue,Counter_value) FROM 'g:\Lib_Info.csv'
+           ... ;
+
