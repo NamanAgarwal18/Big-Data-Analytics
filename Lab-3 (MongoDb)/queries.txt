@@ -1,0 +1,39 @@
+use student
+db.student_info.insert
+(
+    {
+        "RollNo" : 10,
+        "Age" : 19,
+        "Name" : "Naman",
+        "ContactNo" : 123456789,
+        "EmailId" : "naman@gmail.com"
+    }
+)
+
+db.student_info.insert
+(
+    {
+        "RollNo" : 11,
+        "Age" : 20,
+        "Name" : "ABC",
+        "ContactNo" : 123456709,
+        "EmailId" : "abc@gmail.com"
+    }
+)
+
+mycurser = db.student_info.find({})
+
+db.student_info.updateOne
+(
+    {
+        "RollNo" : 10
+    },
+    {
+        $set: { "EmailId" : "namanagarwal@gmail.com", status: "P" },
+        $currentDate : { lastModified: true } 
+    }
+)
+
+mongoexport --db=Student --collection=student_info --type=csv --fields="RollNo","Name","Age","ContactNo","EmailId" --out=D:\abc.csv
+
+mongoimport --type csv -d Student -c student_info --headerline --drop G:\abc.csv
