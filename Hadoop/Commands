@@ -4,6 +4,6 @@ cd ~/hadoop-3.2.1/sbin
 jps
 hdfs dfs -mkdir /input_dir
 hdfs dfs -ls /
-hadoop fs -put /home/akanksha/Desktop/input_file.txt /input_dir
+hadoop fs -put /home/naman/Desktop/input_file.txt /input_dir
 hdfs dfs -ls /input_dir
-hadoop jar /home/akanksha/Downloads/MapReduceClient.jar wordcount /input_dir /output
+hadoop jar /home/naman/Downloads/MapReduceClient.jar wordcount /input_dir /output
